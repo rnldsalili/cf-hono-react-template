@@ -1,6 +1,6 @@
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "api-church-members-management-system",
+	"name": "cf-hr-template-api",
 	"main": "src/index.ts",
 	"compatibility_date": "2026-01-26",
 	"compatibility_flags": [
@@ -18,21 +18,21 @@
 		"CORS_ORIGINS": "http://localhost:3010",
 		"LOG_LEVEL": "debug",
 		"LOG_REDACT_FIELDS": "authorization,cookie,set-cookie,password,token,secret,api-key,x-api-key",
-		"R2_ACCOUNT_ID": "35ade4713beefb2c7f971921950b34c2",
-		"R2_BUCKET_NAME": "cf-template-dev",
+		"R2_ACCOUNT_ID": "YOUR_R2_ACCOUNT_ID",
+		"R2_BUCKET_NAME": "cf-hr-template-dev",
 		"R2_PRESIGNED_URL_TTL_SECONDS": "900"
 	},
 	"d1_databases": [
 		{
 			"binding": "DB",
-			"database_name": "cf_template_dev",
-			"database_id": "c3f51c59-6593-4307-8635-fec84ef50dee"
+			"database_name": "cf-hr-template-dev",
+			"database_id": "YOUR_D1_DATABASE_ID_DEV"
 		}
 	],
 	"r2_buckets": [
 		{
 			"binding": "STORAGE",
-			"bucket_name": "cf-dev",
+			"bucket_name": "cf-hr-template-dev",
 		}
 	],
 	"ratelimits": [
@@ -47,14 +47,14 @@
 	],
 	"env": {
 		"production": {
-			"name": "api-church-members-management-system",
+			"name": "cf-hr-template-api",
 			"vars": {
-				"BETTER_AUTH_URL": "https://fq-api.ronald.it.com",
-				"CORS_ORIGINS": "https://fq-admin.ronald.it.com",
+				"BETTER_AUTH_URL": "YOUR_API_URL",
+				"CORS_ORIGINS": "YOUR_ADMIN_URL",
 				"LOG_LEVEL": "info",
 				"LOG_REDACT_FIELDS": "authorization,cookie,set-cookie,password,token,secret,api-key,x-api-key",
-				"R2_ACCOUNT_ID": "35ade4713beefb2c7f971921950b34c2",
-				"R2_BUCKET_NAME": "cf-template-prod",
+				"R2_ACCOUNT_ID": "YOUR_R2_ACCOUNT_ID",
+				"R2_BUCKET_NAME": "cf-hr-template-prod",
 				"R2_PRESIGNED_URL_TTL_SECONDS": "900"
 			},
 			"ratelimits": [
@@ -70,19 +70,19 @@
 			"d1_databases": [
 				{
 					"binding": "DB",
-					"database_name": "cf-template_prod",
-					"database_id": "93ed50e4-62ed-46ad-9848-0abdbbc59cce"
+					"database_name": "cf-hr-template-prod",
+					"database_id": "YOUR_D1_DATABASE_ID_PROD"
 				}
 			],
 			"r2_buckets": [
 				{
 					"binding": "STORAGE",
-					"bucket_name": "cf-template-prod"
+					"bucket_name": "cf-hr-template-prod"
 				}
 			],
 			"routes": [
 				{
-					"pattern": "fq-api.ronald.it.com",
+					"pattern": "YOUR_API_DOMAIN",
 					"custom_domain": true
 				}
 			]

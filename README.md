@@ -33,23 +33,39 @@ packages/
 
 ## Getting Started
 
-**1. Install dependencies**
+### Scaffold a new project
 
 ```bash
-bun install
+bun create rnldsalili/cf-hono-react-template <project-name>
 ```
 
-**2. Configure environment**
+The interactive setup script will prompt for your project name, replace config placeholders, install dependencies, and initialise a fresh git repository.
+
+### After scaffolding
+
+**1. Configure environment variables**
 
 ```bash
-# API
 cp apps/api/.dev.vars.example apps/api/.dev.vars
-
-# Admin
 cp apps/admin/.env.example apps/admin/.env
 ```
 
-**3. Start development servers**
+**2. Create Cloudflare D1 databases**
+
+```bash
+bunx wrangler d1 create <project-name>-dev
+bunx wrangler d1 create <project-name>-prod
+```
+
+Copy the `database_id` values printed by the commands above into `apps/api/wrangler.jsonc`.
+
+**3. Apply DB migrations locally**
+
+```bash
+cd apps/api && bunx wrangler d1 migrations apply <project-name>-dev --local
+```
+
+**4. Start development servers**
 
 ```bash
 bun run dev
