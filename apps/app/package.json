@@ -1,12 +1,12 @@
 {
-  "name": "@workspace/admin",
+  "name": "@workspace/app",
   "private": true,
   "type": "module",
   "imports": {
     "#/*": "./src/*"
   },
   "scripts": {
-    "dev": "vite dev --port 3010",
+    "dev": "vite dev --port 3011",
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest run",

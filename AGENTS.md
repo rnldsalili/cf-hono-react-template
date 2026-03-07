@@ -1,6 +1,6 @@
 # Agent Guide: Church Members Management System
 
-This repository is a monorepo managed with Bun workspaces. It contains a Cloudflare Workers API, a TanStack Start Admin app, and shared packages.
+This repository is a monorepo managed with Bun workspaces. It contains a Cloudflare Workers API, a TanStack Start Admin app, a TanStack Start App, and shared packages.
 
 ## Tech Stack
 
@@ -33,6 +33,20 @@ This repository is a monorepo managed with Bun workspaces. It contains a Cloudfl
   - Fonts: Noto Sans (Variable)
 - **Testing**: Vitest + React Testing Library
 
+### App (`apps/app`)
+
+- **Framework**: React 19
+- **Meta-Framework**: TanStack Start (SSR/ISR)
+- **Routing**: TanStack Router
+- **Build Tool**: Vite 7
+- **Styling**: Tailwind CSS v4
+- **UI Architecture**:
+  - Base UI (`@base-ui/react`)
+  - Class Variance Authority (`class-variance-authority`)
+  - Tabler Icons (`@tabler/icons-react`)
+  - Fonts: Noto Sans (Variable)
+- **Testing**: Vitest + React Testing Library
+
 ### Shared Packages
 
 - `packages/api-client`: Hono RPC client and type generation helpers.
@@ -47,7 +61,8 @@ This repository is a monorepo managed with Bun workspaces. It contains a Cloudfl
 ```text
 /
 ├── apps
-│   ├── admin/       # TanStack Start frontend
+│   ├── admin/       # TanStack Start frontend (admin)
+│   ├── app/         # TanStack Start frontend (app)
 │   └── api/         # Hono + Cloudflare Workers backend
 ├── packages
 │   ├── api-client/      # Hono RPC client
@@ -70,7 +85,7 @@ Run the following from the root to start all services:
 bun run dev
 ```
 
-Admin runs on `http://localhost:3010` and API on `http://localhost:3000` by default.
+Admin runs on `http://localhost:3010`, App runs on `http://localhost:3011`, and API on `http://localhost:3000` by default.
 
 ### Environment Setup
 
@@ -86,6 +101,14 @@ cp .dev.vars.example .dev.vars
 
 ```bash
 cd apps/admin
+cp .env.example .env
+# Set VITE_API_URL (defaults to http://localhost:3000)
+```
+
+**3. App (`apps/app`)**:
+
+```bash
+cd apps/app
 cp .env.example .env
 # Set VITE_API_URL (defaults to http://localhost:3000)
 ```
@@ -155,6 +178,16 @@ When you change Prisma models (D1, from `apps/api`):
 ### Admin Development
 
 - Routes live in `apps/admin/src/routes`.
+- Use **TanStack Router** for navigation and type-safe routing.
+- Use **Tailwind v4** for styling (CSS imports + `@tailwindcss/vite`).
+- Import UI components from `@workspace/ui` (e.g., `import { Button } from '@workspace/ui'`).
+- Prefer **Tabler Icons** for iconography.
+- Use `@workspace/api-client` for API calls and `@workspace/auth-client` for auth UI.
+- When building UI, call **shadcn** mcp and check component examples before implementing.
+
+### App Development
+
+- Routes live in `apps/app/src/routes`.
 - Use **TanStack Router** for navigation and type-safe routing.
 - Use **Tailwind v4** for styling (CSS imports + `@tailwindcss/vite`).
 - Import UI components from `@workspace/ui` (e.g., `import { Button } from '@workspace/ui'`).

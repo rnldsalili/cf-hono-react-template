@@ -40,6 +40,7 @@ echo ""
 FILES=(
   "apps/api/wrangler.jsonc"
   "apps/admin/wrangler.jsonc"
+  "apps/app/wrangler.jsonc"
   ".github/workflows/deploy.yml"
 )
 
@@ -58,6 +59,7 @@ done
 echo -e "  ${CYAN}Copying environment variable templates...${RESET}"
 [ -f "apps/api/.dev.vars.example" ] && cp "apps/api/.dev.vars.example" "apps/api/.dev.vars"
 [ -f "apps/admin/.env.example" ] && cp "apps/admin/.env.example" "apps/admin/.env"
+[ -f "apps/app/.env.example" ] && cp "apps/app/.env.example" "apps/app/.env"
 echo ""
 
 # ─── Install dependencies ─────────────────────────────────────────────────────
@@ -81,8 +83,8 @@ echo -e "  ${DIM}1.${RESET} Enter your project directory"
 echo -e "     ${DIM}\$${RESET} cd ${PROJECT_NAME}"
 echo ""
 echo -e "  ${DIM}2.${RESET} Fill in environment variables"
-echo -e "     ${DIM}  apps/api/.dev.vars and apps/admin/.env have been created for you.${RESET}"
-echo -e "     ${DIM}  Edit both files and fill in the required values.${RESET}"
+echo -e "     ${DIM}  apps/api/.dev.vars, apps/admin/.env, and apps/app/.env have been created for you.${RESET}"
+echo -e "     ${DIM}  Edit the files and fill in the required values.${RESET}"
 echo ""
 echo -e "  ${DIM}3.${RESET} Create Cloudflare D1 databases, then copy the ${BOLD}database_id${RESET} values"
 echo -e "     ${DIM}  into apps/api/wrangler.jsonc${RESET}"
