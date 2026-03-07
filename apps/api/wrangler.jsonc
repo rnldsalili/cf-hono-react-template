@@ -1,0 +1,91 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "api-church-members-management-system",
+	"main": "src/index.ts",
+	"compatibility_date": "2026-01-26",
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	"dev": {
+		"port": 3000
+	},
+	"observability": {
+		"enabled": true,
+		"head_sampling_rate": 1
+	},
+	"vars": {
+		"BETTER_AUTH_URL": "http://localhost:3000",
+		"CORS_ORIGINS": "http://localhost:3010",
+		"LOG_LEVEL": "debug",
+		"LOG_REDACT_FIELDS": "authorization,cookie,set-cookie,password,token,secret,api-key,x-api-key",
+		"R2_ACCOUNT_ID": "35ade4713beefb2c7f971921950b34c2",
+		"R2_BUCKET_NAME": "cf-template-dev",
+		"R2_PRESIGNED_URL_TTL_SECONDS": "900"
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "cf_template_dev",
+			"database_id": "c3f51c59-6593-4307-8635-fec84ef50dee"
+		}
+	],
+	"r2_buckets": [
+		{
+			"binding": "STORAGE",
+			"bucket_name": "cf-dev",
+		}
+	],
+	"ratelimits": [
+		{
+			"name": "RATE_LIMITER",
+			"namespace_id": "1001",
+			"simple": {
+				"limit": 100,
+				"period": 60
+			}
+		}
+	],
+	"env": {
+		"production": {
+			"name": "api-church-members-management-system",
+			"vars": {
+				"BETTER_AUTH_URL": "https://fq-api.ronald.it.com",
+				"CORS_ORIGINS": "https://fq-admin.ronald.it.com",
+				"LOG_LEVEL": "info",
+				"LOG_REDACT_FIELDS": "authorization,cookie,set-cookie,password,token,secret,api-key,x-api-key",
+				"R2_ACCOUNT_ID": "35ade4713beefb2c7f971921950b34c2",
+				"R2_BUCKET_NAME": "cf-template-prod",
+				"R2_PRESIGNED_URL_TTL_SECONDS": "900"
+			},
+			"ratelimits": [
+				{
+					"name": "RATE_LIMITER",
+					"namespace_id": "1002",
+					"simple": {
+						"limit": 100,
+						"period": 60
+					}
+				}
+			],
+			"d1_databases": [
+				{
+					"binding": "DB",
+					"database_name": "cf-template_prod",
+					"database_id": "93ed50e4-62ed-46ad-9848-0abdbbc59cce"
+				}
+			],
+			"r2_buckets": [
+				{
+					"binding": "STORAGE",
+					"bucket_name": "cf-template-prod"
+				}
+			],
+			"routes": [
+				{
+					"pattern": "fq-api.ronald.it.com",
+					"custom_domain": true
+				}
+			]
+		}
+	}
+}

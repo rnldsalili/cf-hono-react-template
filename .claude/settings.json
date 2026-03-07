@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s https://registry.npmjs.org/tailwind-merge)",
+      "Bash(curl -s https://registry.npmjs.org/class-variance-authority)",
+      "Bash(curl -s https://registry.npmjs.org/next-themes)",
+      "Bash(curl -s https://registry.npmjs.org/date-fns)",
+      "Bash(curl -s https://registry.npmjs.org/react-day-picker)",
+      "Bash(curl -s https://registry.npmjs.org/shadcn)",
+      "Bash(curl -s https://registry.npmjs.org/hono-rate-limiter)"
+    ]
+  }
+}
