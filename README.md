@@ -37,11 +37,13 @@ packages/
 
 ```bash
 bun create rnldsalili/cf-hono-react-template <project-name>
+cd <project-name>
+bash bun-create.sh
 ```
 
-The interactive setup script will prompt for your project name, replace config placeholders, install dependencies, and initialise a fresh git repository.
+`bun create` downloads the template files. `bun-create.sh` then runs the interactive setup — prompts for your project name, replaces config placeholders, installs dependencies, and initialises a fresh git repository.
 
-### After scaffolding
+### After running bun-create.sh
 
 **1. Configure environment variables**
 
@@ -62,10 +64,16 @@ Copy the `database_id` values printed by the commands above into `apps/api/wrang
 **3. Apply DB migrations locally**
 
 ```bash
-cd apps/api && bunx wrangler d1 migrations apply <project-name>-dev --local
+cd apps/api && bunx wrangler d1 migrations apply <project-name>-dev --local && cd ../
 ```
 
-**4. Start development servers**
+**4. Generate the Prisma client**
+
+```bash
+bun run db:generate
+```
+
+**5. Start development servers**
 
 ```bash
 bun run dev
