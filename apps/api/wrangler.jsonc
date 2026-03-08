@@ -16,11 +16,9 @@
 	"vars": {
 		"BETTER_AUTH_URL": "http://localhost:3000",
 		"CORS_ORIGINS": "http://localhost:3010",
-		"LOG_LEVEL": "debug",
-		"LOG_REDACT_FIELDS": "authorization,cookie,set-cookie,password,token,secret,api-key,x-api-key",
-		"R2_ACCOUNT_ID": "YOUR_R2_ACCOUNT_ID",
-		"R2_BUCKET_NAME": "cf-hr-template-dev",
-		"R2_PRESIGNED_URL_TTL_SECONDS": "900"
+		// "R2_ACCOUNT_ID": "YOUR_R2_ACCOUNT_ID",
+		// "R2_BUCKET_NAME": "cf-hr-template-dev",
+		// "R2_PRESIGNED_URL_TTL_SECONDS": "900"
 	},
 	"d1_databases": [
 		{
@@ -29,12 +27,12 @@
 			"database_id": "YOUR_D1_DATABASE_ID_DEV"
 		}
 	],
-	"r2_buckets": [
-		{
-			"binding": "STORAGE",
-			"bucket_name": "cf-hr-template-dev",
-		}
-	],
+	// "r2_buckets": [
+	// 	{
+	// 		"binding": "STORAGE",
+	// 		"bucket_name": "cf-hr-template-dev",
+	// 	}
+	// ],
 	"ratelimits": [
 		{
 			"name": "RATE_LIMITER",
@@ -51,11 +49,9 @@
 			"vars": {
 				"BETTER_AUTH_URL": "YOUR_API_URL",
 				"CORS_ORIGINS": "YOUR_ADMIN_URL",
-				"LOG_LEVEL": "info",
-				"LOG_REDACT_FIELDS": "authorization,cookie,set-cookie,password,token,secret,api-key,x-api-key",
-				"R2_ACCOUNT_ID": "YOUR_R2_ACCOUNT_ID",
-				"R2_BUCKET_NAME": "cf-hr-template-prod",
-				"R2_PRESIGNED_URL_TTL_SECONDS": "900"
+				// "R2_ACCOUNT_ID": "YOUR_R2_ACCOUNT_ID",
+				// "R2_BUCKET_NAME": "cf-hr-template-prod",
+				// "R2_PRESIGNED_URL_TTL_SECONDS": "900"
 			},
 			"ratelimits": [
 				{
@@ -74,12 +70,12 @@
 					"database_id": "YOUR_D1_DATABASE_ID_PROD"
 				}
 			],
-			"r2_buckets": [
-				{
-					"binding": "STORAGE",
-					"bucket_name": "cf-hr-template-prod"
-				}
-			],
+			// "r2_buckets": [
+			// 	{
+			// 		"binding": "STORAGE",
+			// 		"bucket_name": "cf-hr-template-prod"
+			// 	}
+			// ],
 			"routes": [
 				{
 					"pattern": "YOUR_API_DOMAIN",
