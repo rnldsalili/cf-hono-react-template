@@ -58,6 +58,7 @@ done
 # ─── Copy environment variable templates ─────────────────────────────────────
 echo -e "  ${CYAN}Copying environment variable templates...${RESET}"
 [ -f "apps/api/.dev.vars.example" ] && cp "apps/api/.dev.vars.example" "apps/api/.dev.vars"
+[ -f "apps/api/.env.example" ] && cp "apps/api/.env.example" "apps/api/.env"
 [ -f "apps/admin/.env.example" ] && cp "apps/admin/.env.example" "apps/admin/.env"
 [ -f "apps/app/.env.example" ] && cp "apps/app/.env.example" "apps/app/.env"
 echo ""
@@ -65,6 +66,11 @@ echo ""
 # ─── Install dependencies ─────────────────────────────────────────────────────
 echo -e "  ${CYAN}Installing dependencies...${RESET}"
 bun install --frozen-lockfile 2>&1 | sed 's/^/  /'
+echo ""
+
+# ─── Generate Prisma client ───────────────────────────────────────────────────
+echo -e "  ${CYAN}Generating Prisma client...${RESET}"
+bun run db:generate 2>&1 | sed 's/^/  /'
 echo ""
 
 # ─── Init git ─────────────────────────────────────────────────────────────────
@@ -83,7 +89,7 @@ echo -e "  ${DIM}1.${RESET} Enter your project directory"
 echo -e "     ${DIM}\$${RESET} cd ${PROJECT_NAME}"
 echo ""
 echo -e "  ${DIM}2.${RESET} Fill in environment variables"
-echo -e "     ${DIM}  apps/api/.dev.vars, apps/admin/.env, and apps/app/.env have been created for you.${RESET}"
+echo -e "     ${DIM}  apps/api/.dev.vars, apps/api/.env, apps/admin/.env, and apps/app/.env have been created for you.${RESET}"
 echo -e "     ${DIM}  Edit the files and fill in the required values.${RESET}"
 echo ""
 echo -e "  ${DIM}3.${RESET} Create Cloudflare D1 databases, then copy the ${BOLD}database_id${RESET} values"
@@ -94,9 +100,6 @@ echo ""
 echo -e "  ${DIM}4.${RESET} Apply DB migrations locally"
 echo -e "     ${DIM}\$${RESET} cd apps/api && bunx wrangler d1 migrations apply ${PROJECT_NAME}-dev --local && cd ../"
 echo ""
-echo -e "  ${DIM}5.${RESET} Generate the Prisma client"
-echo -e "     ${DIM}\$${RESET} bun run db:generate"
-echo ""
-echo -e "  ${DIM}6.${RESET} Start development servers"
+echo -e "  ${DIM}5.${RESET} Start development servers"
 echo -e "     ${DIM}\$${RESET} bun run dev"
 echo ""
